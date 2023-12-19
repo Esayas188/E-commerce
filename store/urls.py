@@ -22,6 +22,9 @@ from store import views
 urlpatterns = [
     path('',views.Home,name='home'),
 	path('store', views.store, name="store"),
+	path('cart/', views.cart, name="cart"),
+	path('checkout/', views.checkout, name="checkout"),
+
 
     path('login/', views.loginUser, name="login"),
     path('logout/', views.logoutUser, name="logout"),

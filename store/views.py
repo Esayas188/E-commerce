@@ -21,7 +21,15 @@ def store(request):
 	context = {'products':products,'title_variable': 'Store'}
 	return render(request, 'store.html', context)
 
+def cart(request):
 
+
+	context = {}
+	return render(request, 'cart.html', context)
+def checkout(request):
+
+	context = {}
+	return render(request, 'checkout.html', context)
 
 def loginUser(request):
     title_variable = 'login'
