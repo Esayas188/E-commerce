@@ -20,9 +20,8 @@ from django.urls import include, path
 from store import views
 
 urlpatterns = [
+    path('',views.Home,name='home'),
     path('login/', views.loginUser, name="login"),
     path('logout/', views.logoutUser, name="logout"),
     path('register/', views.registerUser, name="register"),
-
-
 ]

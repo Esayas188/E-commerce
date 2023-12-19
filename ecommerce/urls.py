@@ -21,8 +21,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('store/',include('store.urls')),
-    path('',views.Home,name='home'),
+    path('',include('store.urls')),
 
     path("__reload__/", include("django_browser_reload.urls")),
 

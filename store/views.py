@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
 
 
+def Home(request):
+    return render(request,'Home.html')
+
 def loginUser(request):
     page = 'login'
 
