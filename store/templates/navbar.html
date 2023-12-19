@@ -1,10 +1,11 @@
+{% load static %}
 
 {% block content %}
     <body>
         <nav class="w-screen bg-[#5a5948] h-fit overflow-hidden">
-            <div class="py-4 lg:px-8 px-4 max-w-[1280px] h-16 m-auto text-white flex items-center justify-between">
+            <div class="py-10 lg:px-8 px-4 max-w-[1280px] h-16 m-auto text-white flex items-center justify-between">
                 <div>
-                    <h1 class="lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold">Document</h1>
+                    <img class=" h-[50px] lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold" src='{% static "images/Logo.png" %}' alt="logo">
                 </div>
                 <div class="flex lg:gap-8 gap-6 uppercase tracking-wider cursor-pointer text-lg items-center" id="navItems">
                     <span class="group">
