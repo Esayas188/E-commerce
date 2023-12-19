@@ -8,11 +8,15 @@
     <title>{{title_variable}}</title>
 </head>
 <body>
-    <h1>this is from base</h1>
-    
-    {% block content %}
+    {% include "navbar.html" %}
+    <div class="text-[#282220]">
+        {% block content %}
       
-    {% endblock content %}
+        {% endblock content %}
+
+    </div>
+
+    {% include "footer.html" %}
     
 </body>
 </html>
