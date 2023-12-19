@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-</head>
-<body>
+
+{% extends "base.html" %}
+
+{% block content %}
     {% if page == 'register' %}
     <div class="auth">
         <div class="card">
@@ -15,27 +11,27 @@
                 <h3>Register an Account</h3>
                 <p>Create a new developer account</p>
             </div>
-    
+
             <form method="POST" action="{% url 'register' %}" class="form auth__form">
                 {% csrf_token %}
-    
+
                 {% for field in form %}
                 <div class="form__field">
                     <label for="formInput#text">{{field.label}}</label>
                     {{field}}
-    
+
                     <!-- {% if field.help_text %}
                     <small>{{field.help_text}}</small>
                     {% endif %} -->
-    
+
                     {% for error in field.errors %}
                     <p style="color: red;">{{error}}</p>
                     {% endfor %}
-    
+
                 </div>
-    
+
                 {% endfor %}
-    
+
                 <div class="auth__actions">
                     <input class="btn btn--sub btn--lg" type="submit" value="Sign up" />
                 </div>
@@ -87,8 +83,9 @@
             </div>
         </div>
     </div>
-      
-    {% endif %}
     
-</body>
-</html>
+    {% endif %}
+  
+{% endblock content %}
+
+    

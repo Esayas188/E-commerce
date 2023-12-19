@@ -2,14 +2,30 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+
+from store.models import Product
 from .forms import CustomUserCreationForm
 
 
 def Home(request):
-    return render(request,'Home.html')
+    context = {
+        'title_variable': 'Home',
+        
+    }
+    return render(request,'Home.html',context)
+
+def store(request):
+
+	products = Product.objects.all()
+    
+	context = {'products':products,'title_variable': 'Store'}
+	return render(request, 'store.html', context)
+
+
 
 def loginUser(request):
-    page = 'login'
+    title_variable = 'login'
+    
 
     if request.user.is_authenticated:
         return redirect('home')
@@ -32,7 +48,7 @@ def loginUser(request):
         else:
             messages.error(request, 'Username OR password is incorrect')
 
-    return render(request, 'login_register.html')
+    return render(request, 'login_register.html',{'title_variable':title_variable})
 
 
 def logoutUser(request):
@@ -42,7 +58,7 @@ def logoutUser(request):
 
 
 def registerUser(request):
-    page = 'register'
+    title_variable = 'register'
     form = CustomUserCreationForm()
 
     if request.method == 'POST':
@@ -61,5 +77,5 @@ def registerUser(request):
             messages.success(
                 request, 'An error has occurred during registration')
 
-    context = {'page': page, 'form': form}
+    context = {'title_variable':title_variable, 'form': form}
     return render(request, 'login_register.html', context)
