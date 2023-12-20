@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('USER:', user)
 
             if (user == 'AnonymousUser'){
-               console.log('user is utenticated')
+               console.log('user is unautenticated')
             }else{
                 console.log('user is authenticated')
             }
