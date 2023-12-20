@@ -11,6 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
             var productId = this.dataset.product;
             var action = this.dataset.action;
             console.log('productId:', productId, 'Action:', action);
+            console.log('USER:', user)
+
+            if (user == 'AnonymousUser'){
+               console.log('user is utenticated')
+            }else{
+                console.log('user is authenticated')
+            }
 
         });
     });
