@@ -3,8 +3,8 @@
 
 {% block content %}
     <div class="min-h-full my-10 grid grid-cols-3">
-        <div class="lg:col-span-2 col-span-3  space-y-8 px-12">
-            <div class="mt-8 p-4 relative flex flex-col sm:flex-row sm:items-center bg-white shadow rounded-md">
+        <div class="lg:col-span-2 col-span-3  space-y-8 px-4 sm:px-12">
+            <div class="mt-8 p-4 relative flex flex-col sm:flex-row sm:items-center bg-white shadow rounded-sm">
                 <div class="flex flex-row items-center border-b sm:border-b-0 w-full sm:w-auto pb-4 sm:pb-0">
                     <div class="text-yellow-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 sm:w-5 h-6 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -23,33 +23,33 @@
                     <section>
                         <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2">Shipping & Billing Information</h2>
                         <fieldset class="mb-3 bg-white shadow-lg rounded text-gray-600">
-                            <label class="flex border-b border-gray-200 h-12 py-3 items-center">
-                                <span class="text-right px-2">Name</span>
-                                <input name="name" class="focus:outline-none px-3" placeholder="Try Odinsson" required="">
+                            <label class="flex  border-b border-gray-200 h-12 py-3 items-center">
+                                <span class="text-right sm:px-2">Name</span>
+                                <input name="name" class="focus:outline-none border-none sm:px-3" placeholder="Try Odinsson" required="">
                             </label>
                             <label class="flex border-b border-gray-200 h-12 py-3 items-center">
-                                <span class="text-right px-2">Email</span>
-                                <input name="email" type="email" class="focus:outline-none px-3" placeholder="try@example.com" required="">
+                                <span class="text-right sm:px-2">Email</span>
+                                <input name="email" type="email" class="focus:outline-none border-none sm:px-3" placeholder="try@example.com" required="">
                             </label>
-                            <label class="flex border-b border-gray-200 h-12 py-3 items-center">
-                                <span class="text-right px-2">Address</span>
-                                <input name="address" class="focus:outline-none px-3" placeholder="10 Street XYZ 654">
+                            <label class="flex border-b gap-1 border-gray-200 h-12 py-3 items-center">
+                                <span class="text-right sm:px-2">Address</span>
+                                <input name="address" class="focus:outline-none border-none sm:px-3" placeholder="10 Street XYZ 654">
                             </label>
-                            <label class="flex border-b border-gray-200 h-12 py-3 items-center">
-                                <span class="text-right px-2">City</span>
-                                <input name="city" class="focus:outline-none px-3" placeholder="San Francisco">
+                            <label class="flex border-b border-gray-200  gap-2 h-12 py-3 items-center">
+                                <span class="text-right sm:px-2">City</span>
+                                <input name="city" class="focus:outline-none border-none sm:px-3" placeholder="San Francisco">
                             </label>
-                            <label class="inline-flex w-2/4 border-none items-center  gap-2  py-3">
-                                <span class="text-right px-2">State</span>
-                                <input name="state" class="focus:outline-none border-none  px-3" placeholder="CA">
+                            <label class="inline-flex w-2/4 border-gray-200 items-center  gap-2  py-3">
+                                <span class="text-right sm:px-2">State</span>
+                                <input name="state" class="focus:outline-none border-none  sm:px-3" placeholder="CA">
                             </label>
-                            <label class="xl:w-1/4 xl:inline-flex items-center justify-center flex gap-2 xl:border-none border-t  py-3">
-                                <span class="text-right px-2 xl:px-0 xl:text-none">ZIP</span>
-                                <input name="postal_code" class="focus:outline-none px-3 border-none" placeholder="98603">
+                            <label class="xl:w-1/4 xl:inline-flex items-center justify-center border-gray-200 flex gap-2 xl:border-none border-t  py-3">
+                                <span class="text-right sm:px-2 xl:px-0 xl:text-none">ZIP</span>
+                                <input name="postal_code" class="focus:outline-none sm:px-3 border-none" placeholder="98603">
                             </label>
-                            <label class="flex border-t border-none h-12 py-3 items-center select relative">
-                                <span class="text-right px-2">Country</span>
-                                <div id="country" class="focus:outline-none px-3 w-full flex items-center">
+                            <label class="flex border-t  border-gray-200 h-12 py-3 items-center select relative">
+                                <span class="text-right sm:px-2">Country</span>
+                                <div id="country" class="focus:outline-none sm:px-3 w-full flex items-center">
                                     <select name="country" class="border-none bg-transparent flex-1 cursor-pointer appearance-none focus:outline-none">
                                         <option value="AU">Australia</option>
                                         <option value="BE">Belgium</option>
@@ -82,7 +82,7 @@
                 </form>
             </div>
 
-            <button class="submit-button px-4 py-3 rounded-full bg-pink-400 text-white focus:ring focus:outline-none w-full text-xl font-semibold transition-colors">
+            <button class="submit-button px-4 py-3 rounded-full bg-[#fbab2b] hover:bg-[rgba(251,171,43,0.6)] text-white focus:ring focus:outline-none w-full text-xl font-semibold transition-colors">
                 Pay €846.98
             </button>
         </div>
@@ -100,7 +100,7 @@
                     <div class="col-span-2 pt-3">
                         <div class="flex items-center space-x-2 text-sm justify-between">
                             <span class="text-gray-400">2 x €30.99</span>
-                            <span class="text-pink-400 font-semibold inline-block">€61.98</span>
+                            <span class="text-[#fbab2b] font-semibold inline-block">€61.98</span>
                         </div>
                     </div>
                 </li>
@@ -115,7 +115,7 @@
                     <div class="col-span-2 pt-3">
                         <div class="flex items-center space-x-2 text-sm justify-between">
                             <span class="text-gray-400">1 x €785</span>
-                            <span class="text-pink-400 font-semibold inline-block">€785</span>
+                            <span class="text-[#fbab2b] font-semibold inline-block">€785</span>
                         </div>
                     </div>
                 </li>
@@ -123,11 +123,11 @@
             <div class="px-8 border-b">
                 <div class="flex justify-between py-4 text-gray-600">
                     <span>Subtotal</span>
-                    <span class="font-semibold text-pink-500">€846.98</span>
+                    <span class="font-semibold text-[#fbab2b]">€846.98</span>
                 </div>
                 <div class="flex justify-between py-4 text-gray-600">
                     <span>Shipping</span>
-                    <span class="font-semibold text-pink-500">Free</span>
+                    <span class="font-semibold text-[#fbab2b]">Free</span>
                 </div>
             </div>
             <div class="font-semibold text-xl px-8 flex justify-between py-8 text-gray-600">
