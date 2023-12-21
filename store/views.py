@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 from store.models import Product
 from .forms import CustomUserCreationForm
+from .utils import cookieCart, cartData
 
 
 def Home(request):
@@ -22,13 +23,23 @@ def store(request):
 	return render(request, 'store.html', context)
 
 def cart(request):
+	data = cartData(request)
 
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
 
-	context = {}
+	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'cart.html', context)
-def checkout(request):
 
-	context = {}
+def checkout(request):
+	data = cartData(request)
+	
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+
+	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'checkout.html', context)
 
 def loginUser(request):
