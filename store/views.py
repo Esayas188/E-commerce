@@ -12,10 +12,14 @@ from .utils import cookieCart, cartData, guestOrder
 
 
 def Home(request):
-    context = {
-        'title_variable': 'Home',
-        
-    }
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    products = Product.objects.all()
+    context = {'title_variable': 'Home','products':products,'cartItems':cartItems,'items':items, 'order':order}
     return render(request,'Home.html',context)
 
 def store(request):
@@ -27,7 +31,7 @@ def store(request):
 
     products = Product.objects.all()
     
-    context = {'products':products,'title_variable': 'Store','cartItems':cartItems}
+    context = {'title_variable': 'Store','products':products,'cartItems':cartItems,'items':items, 'order':order}
     return render(request, 'store.html', context)
 
 def cart(request):
@@ -51,6 +55,7 @@ def checkout(request):
 	return render(request, 'checkout.html', context)
 def updateItem(request):
 	data = json.loads(request.body)
+      
 	productId = data['productId']
 	action = data['action']
 	print('Action:', action)
