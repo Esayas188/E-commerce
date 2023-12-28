@@ -1,0 +1,4 @@
+/* In your CSS file or within a `tailwind.config.js` theme section */
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
