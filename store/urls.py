@@ -26,6 +26,8 @@ urlpatterns = [
 	path('checkout/', views.checkout, name="checkout"),
 	path('update_item/', views.updateItem, name="update_item"),
 	path('process_order/', views.processOrder, name="process_order"),
+	path('callback/', views.chapa_callback, name="chapa_chapa_callback"),
+
 
 
     path('login/', views.loginUser, name="login"),

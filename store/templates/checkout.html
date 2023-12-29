@@ -3,6 +3,13 @@
 
 {% block content %}
     <div class="min-h-full px-[60px] my-4 grid grid-cols-3">
+        {% if messages %}
+        <ul class="messages border-red-400 border-4 p-[40px]">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}  
         <div class="lg:col-span-2 col-span-3  space-y-8 px-4 sm:px-12">
             <div class="mt-8 p-4 relative flex flex-col sm:flex-row sm:items-center bg-white shadow rounded-sm">
                 <div class="flex flex-row items-center border-b sm:border-b-0 w-full sm:w-auto pb-4 sm:pb-0">
@@ -18,17 +25,17 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </div>
             </div>
-            <div class=" rounded-md">
+            <div class=" ">
                 <h2 class="uppercase tracking-wide text-lg font-semibold text-gray-700 my-2">Shipping & Billing Information</h2>
 
-                <form action="" action="" id="form" class="flex flex-col mb-3 bg-white shadow-lg px-8 py-10 rounded text-gray-600">
+                <form action="" action="" id="form" class="flex flex-col mb-3 bg-white shadow-lg px-8 py-10 rounded-3xl text-gray-600">
                         <label class="  py-1">
                             <span class="">First Name</span>
-                            <input name="first-name" class="focus:outline-none w-full h-[35px] border-gray-200" placeholder="" required="">
+                            <input name="first_name" class="focus:outline-none w-full h-[35px] border-gray-200" placeholder="" required="">
                         </label>
                         <label class="   py-1">
                             Last Name
-                            <input name="last-name" type="text" class="focus:outline-none w-full h-[35px] border-gray-200" required="">
+                            <input name="last_name" type="text" class="focus:outline-none w-full h-[35px] border-gray-200" required="">
                         </label>
                         <label class="   py-1">
                             <span class="">Email</span>
@@ -38,6 +45,11 @@
                             <span class="">Phone</span>
                             <input name="phone" type="number" class="focus:outline-none w-full h-[35px] border-gray-200">
                         </label>
+                        <label class="  py-1">
+                            <span class=" ">City</span>
+                            <input name="city" type="text" class="focus:outline-none w-full h-[35px] border-gray-200">
+                        </label>
+                        
                         <label class="  py-1">
                             <span class=" ">Address</span>
                             <input name="address" type="text" class="focus:outline-none w-full h-[35px] border-gray-200">
@@ -97,8 +109,69 @@
 		form.addEventListener('submit', function(e){
 	    	e.preventDefault()
 	    	console.log('Submitted')
+            var Data = {
+				'first_name':null,
+				'last_name':null,
+				'email':null,
+                'phone':null,
+				'total':total_price,
+			}
+            
+            var shippingInfo = {
+				'address':null,
+				'city':null,
+
+			}
+            shippingInfo.address = form.address.value
+            shippingInfo.city = form.city.value
+            Data.first_name = form.first_name.value
+            Data.last_name = form.last_name.value
+            Data.email = form.email.value
+            Data.phone = form.phone.value
+            console.log('shipping info',shippingInfo);
+            console.log('form data',Data)
+
+            fetch('/process_order/',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json',
+                    'X-CSRFToken':csrftoken,
+                },
+                body:JSON.stringify({'form':Data,'shipping':shippingInfo})
 
             })
+            .then((response)=> response.json())
+            .then((data)=>{
+                console.log('Success: ',data);
+                // alert('Transaction completed');
+                cart = {}
+				document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+				window.location.href = data;
+
+
+            })
+
+
+
+
+
+            form.address.value = ''
+            form.city.value = ''
+            form.first_name.value = ''
+            form.last_name.value = ''
+            form.email.value = ''
+            form.phone.value = ''
+
+
+
+
+            
+
+
+
+            })
+
 
 
     </script>
