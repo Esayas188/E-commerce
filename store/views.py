@@ -136,7 +136,7 @@ def processOrder(request):
 			customer = request.user.customer
 			order, created = Order.objects.get_or_create(customer=customer, complete=False)
 		else:
-			customer, order = guestOrder(request, data)
+			customer, order = guestOrder(request, first_name,email)
 
 		order.transaction_id = unique_transaction_number
 		order.save()

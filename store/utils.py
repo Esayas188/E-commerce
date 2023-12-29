@@ -56,9 +56,7 @@ def cartData(request):
 	return {'cartItems':cartItems ,'order':order, 'items':items}
 
 	
-def guestOrder(request, data):
-	name = data['form']['name']
-	email = data['form']['email']
+def guestOrder(request,name,email):
 
 	cookieData = cookieCart(request)
 	items = cookieData['items']
