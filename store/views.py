@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 import requests
 
-from store.models import Order, OrderItem, Product, ShippingAddress
+from store.models import Department, Order, OrderItem, Product, ShippingAddress
 from .forms import CustomUserCreationForm
 from .utils import cookieCart, cartData, guestOrder
 import http.client
@@ -36,15 +36,36 @@ def superuser_required(function=None, redirect_field_name=None, login_url='login
     return actual_decorator
 
 def Home(request):
-    data = cartData(request)
+	data = cartData(request)
 
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	departments = Department.objects.all()
+	department_data = {
+		
+	}
 
-    products = Product.objects.all()
-    context = {'title_variable': 'Home','products':products,'cartItems':cartItems,'items':items, 'order':order}
-    return render(request,'Home.html',context)
+	print('this is all department: ')
+
+	products = Product.objects.all()
+	context = {'title_variable': 'Home',
+			'products':products,
+			'cartItems':cartItems,
+			'items':items, 'order':order,
+			'dept0_image_url': departments[0].imageURL if len(departments) > 0 else None,
+			'dept0_name': departments[0].name if len(departments) > 0 else None,
+			
+			'dept1_image_url': departments[1].imageURL if len(departments) > 1 else None,
+			'dept1_name': departments[1].name if len(departments) > 1 else None,
+
+			'dept2_image_url': departments[2].imageURL if len(departments) > 2 else None,
+			'dept2_name': departments[2].name if len(departments) > 2 else None,
+
+			'dept3_image_url': departments[3].imageURL if len(departments) > 3 else None,
+			'dept3_name': departments[3].name if len(departments) > 3 else None,
+			}
+	return render(request,'Home.html',context)
 
 def store(request):
     data = cartData(request)

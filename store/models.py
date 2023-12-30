@@ -58,6 +58,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+	category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200)
 	price = models.FloatField()
 	digital = models.BooleanField(default=False,null=True, blank=True)
