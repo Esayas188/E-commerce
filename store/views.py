@@ -20,7 +20,20 @@ import datetime
 
 load_dotenv()  # Load environment variables from .env file
 PRIVATE_KEY = os.getenv('PRIVATE_KEY')
+from django.contrib.auth.decorators import user_passes_test
 
+def superuser_required(function=None, redirect_field_name=None, login_url='login'):
+    """
+    Decorator for views that checks that the user is a superuser.
+    """
+    actual_decorator = user_passes_test(
+        lambda u: u.is_active and u.is_superuser,
+        login_url=login_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
 
 def Home(request):
     data = cartData(request)
@@ -64,6 +77,12 @@ def checkout(request):
 
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'checkout.html', context)
+
+@superuser_required(login_url='home')
+def dashboard(request):
+	orders = Order.objects.filter(complete=True)
+	context = {'orders':orders}
+	return render(request,'dashboard.html',context)
 def updateItem(request):
 	data = json.loads(request.body)
       
@@ -134,9 +153,11 @@ def processOrder(request):
 		print('response url:',checkout_url)
 		if request.user.is_authenticated:
 			customer = request.user.customer
+			customer.name = phone
+			customer.save()
 			order, created = Order.objects.get_or_create(customer=customer, complete=False)
 		else:
-			customer, order = guestOrder(request, first_name,email)
+			customer, order = guestOrder(request, first_name,email,phone)
 
 		order.transaction_id = unique_transaction_number
 		order.save()

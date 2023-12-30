@@ -56,7 +56,7 @@ def cartData(request):
 	return {'cartItems':cartItems ,'order':order, 'items':items}
 
 	
-def guestOrder(request,name,email):
+def guestOrder(request,name,email,phone):
 
 	cookieData = cookieCart(request)
 	items = cookieData['items']
@@ -65,6 +65,7 @@ def guestOrder(request,name,email):
 			email=email,
 			)
 	customer.name = name
+	customer.name = phone
 	customer.save()
 
 	order = Order.objects.create(
