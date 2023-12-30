@@ -83,6 +83,15 @@ def dashboard(request):
 	orders = Order.objects.filter(complete=True)
 	context = {'orders':orders}
 	return render(request,'dashboard.html',context)
+@superuser_required(login_url='home')
+def orderdetail(request,id):
+	order = Order.objects.get(complete=True,id=id)
+	customer = order.customer
+	items = order.orderitem_set.all()
+	cartItems = order.get_cart_items
+	context = {'dashboardorder':order,'items':items,'cartItems':cartItems,'customer':customer}
+	return render(request,'orderdetail.html',context)
+
 def updateItem(request):
 	data = json.loads(request.body)
       
@@ -153,7 +162,7 @@ def processOrder(request):
 		print('response url:',checkout_url)
 		if request.user.is_authenticated:
 			customer = request.user.customer
-			customer.name = phone
+			customer.phone = phone
 			customer.save()
 			order, created = Order.objects.get_or_create(customer=customer, complete=False)
 		else:

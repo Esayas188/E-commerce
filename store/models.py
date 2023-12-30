@@ -12,6 +12,8 @@ class Customer(models.Model):
  
 	def __str__(self):
 		return self.name
+class Categories(models.Model):
+	pass
 
 
 class Product(models.Model):

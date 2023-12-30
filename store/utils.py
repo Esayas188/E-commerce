@@ -65,7 +65,7 @@ def guestOrder(request,name,email,phone):
 			email=email,
 			)
 	customer.name = name
-	customer.name = phone
+	customer.phone = phone
 	customer.save()
 
 	order = Order.objects.create(

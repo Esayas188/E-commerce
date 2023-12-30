@@ -23,6 +23,8 @@ urlpatterns = [
     path('',views.Home,name='home'),
 	path('store', views.store, name="store"),
 	path('dashboard/', views.dashboard, name="dashboard"),
+	path('orderdetail/<int:id>/', views.orderdetail, name="orderdetail"),
+
 	path('cart/', views.cart, name="cart"),
 	path('checkout/', views.checkout, name="checkout"),
 	path('update_item/', views.updateItem, name="update_item"),
