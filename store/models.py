@@ -12,8 +12,49 @@ class Customer(models.Model):
  
 	def __str__(self):
 		return self.name
-class Categories(models.Model):
-	pass
+class Department(models.Model):
+	name = models.CharField(max_length=200)
+	description = models.TextField(blank=True, null=True)
+	image = models.ImageField(null=True, blank=True)
+
+	def __str__(self):
+		return self.name
+
+	@property
+	def imageURL(self):
+		try:
+			url = self.image.url
+		except:
+			url = ''
+		return url
+
+	def __str__(self):
+		return self.name
+
+
+class Category(models.Model):
+	name = models.CharField(max_length=200)
+	description = models.TextField(blank=True, null=True)
+	parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
+	department = models.ForeignKey(Department, null=True, blank=True, related_name='categories', on_delete=models.CASCADE)
+	image = models.ImageField(null=True, blank=True)
+
+	def __str__(self):
+		return self.name
+
+	@property
+	def imageURL(self):
+		try:
+			url = self.image.url
+		except:
+			url = ''
+		return url
+
+	def __str__(self):
+		return self.name
+
+	def __str__(self):
+		return self.name
 
 
 class Product(models.Model):
