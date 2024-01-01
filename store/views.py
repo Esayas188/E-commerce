@@ -17,6 +17,7 @@ import os
 from dotenv import load_dotenv
 import uuid
 import datetime
+from django.core.paginator import Paginator, EmptyPage,PageNotAnInteger
 
 load_dotenv()  # Load environment variables from .env file
 PRIVATE_KEY = os.getenv('PRIVATE_KEY')
@@ -68,17 +69,89 @@ def Home(request):
 	return render(request,'Home.html',context)
 
 def store(request):
-    data = cartData(request)
+	data = cartData(request)
 
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+ 	# Fetch all products
+	products = Product.objects.all()
 
-    products = Product.objects.all()
-    
-    context = {'title_variable': 'Store','products':products,'cartItems':cartItems,'items':items, 'order':order}
-    return render(request, 'store.html', context)
+	# Paginate products with 3 products per page
+	p = Paginator(products,4)
 
+	# Get the requested page number from the URL parameter 'page'
+	page_num = request.GET.get('page')
+
+	try:
+		# Fetch the products for the requested page number
+		page = p.page(page_num)
+	except PageNotAnInteger:
+		# If the page number is not an integer, set it to 1 as default
+		page = p.page(1)
+	except EmptyPage:
+		# If the requested page number doesn't exist, return the last page
+		page = p.page(1)
+
+	# Pass the paginated products to your template for rendering
+
+	context = {
+		'title_variable': 'Store',
+		'products':page,
+		'cartItems':cartItems,
+		'items':items, 
+		'order':order
+	}
+
+	return render(request, 'store.html', context)
+def ClothingDetail(request,product_id):
+	data = cartData(request)
+
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = Product.objects.filter(category=product_id)
+	p = Paginator(products,2)
+
+	# Get the requested page number from the URL parameter 'page'
+	page_num = request.GET.get('page')
+
+	try:
+		# Fetch the products for the requested page number
+		page = p.page(page_num)
+	except PageNotAnInteger:
+		# If the page number is not an integer, set it to 1 as default
+		page = p.page(1)
+	except EmptyPage:
+		# If the requested page number doesn't exist, return the last page
+		page = p.page(1)
+
+	# Pass the paginated products to your template for rendering
+	context = {
+		'products':page,
+		'items':items,
+		'order':order,
+		'cartItems':cartItems
+
+
+
+	}
+	return render(request,'men_women.html',context)
+def ClothingFashion(request):
+	data = cartData(request)
+
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+	products = Product.objects.filter(department='1')
+	context = {
+		'products':products,
+		'items':items,
+		'order':order,
+		'cartItems':cartItems
+
+	}
+	return render(request,'clothing.html',context)
 def cart(request):
 	data = cartData(request)
 
@@ -86,17 +159,26 @@ def cart(request):
 	order = data['order']
 	items = data['items']
 
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
+	context = {
+		'items':items,
+		'order':order,
+		'cartItems':cartItems
+	}
+
 	return render(request, 'cart.html', context)
 
 def checkout(request):
 	data = cartData(request)
-	
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
 
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
+	context = {
+		'items':items,
+		'order':order,
+		'cartItems':cartItems
+	}
+
 	return render(request, 'checkout.html', context)
 
 @superuser_required(login_url='home')
@@ -104,13 +186,19 @@ def dashboard(request):
 	orders = Order.objects.filter(complete=True)
 	context = {'orders':orders}
 	return render(request,'dashboard.html',context)
+
 @superuser_required(login_url='home')
 def orderdetail(request,id):
 	order = Order.objects.get(complete=True,id=id)
 	customer = order.customer
 	items = order.orderitem_set.all()
 	cartItems = order.get_cart_items
-	context = {'dashboardorder':order,'items':items,'cartItems':cartItems,'customer':customer}
+	context = {
+		'dashboardorder':order,
+		'items':items,
+		'cartItems':cartItems,
+		'customer':customer
+	}
 	return render(request,'orderdetail.html',context)
 
 def updateItem(request):

@@ -78,7 +78,7 @@ def guestOrder(request,name,email,phone):
 		orderItem = OrderItem.objects.create(
 			product=product,
 			order=order,
-			quantity=(item['quantity'] if item['quantity']>0 else -1*item['quantity']), # negative quantity = freebies
+			quantity=(item['quantity'] if item['quantity']>0 else -1*item['quantity']),
 		)
 	return customer, order
 

@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
     <div>
-        <div class="mt-16 px-4 sm:px-6 xl:px-20 2xl:px-0">
-            <div class="flex justify-center items-center">
+        <div class="mt-16 px-4 sm:px-6 xl:px-20 2xl:px-0 max-sm:px-[40px] overflow-hidden">
+            <div class="flex justify-center items-center ">
                 <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
                 <div class="2xl:mx-auto 2xl:container py-12  w-full">
                   <div class="flex flex-col jusitfy-center items-center space-y-10">
@@ -13,8 +13,8 @@
                             <div class='max-w-[1700px] w-full mx-auto '>
                               <div class=' space-y-6 flex justify-end '>
                       
-                                  <a  href="{% url 'dashboard' %}" class='group font-medium tracking-wide select-none text-base relative inline-flex items-center justify-center cursor-pointer h-12 border-2 border-solid py-0 px-6 rounded-md overflow-hidden z-10 transition-all duration-300 ease-in-out outline-0 bg-[#fbab2b] text-white border-[#fbab2b] hover:text-[#fbab2b] focus:text-[#fbab2b]'>
-                                      <strong class='font-medium uppercase'>orders</strong>
+                                  <a  href="{% url 'dashboard' %}" class='flex font-bold py-2 px-4 mt-[20px] rounded-md bg-gradient-to-r from-[#fbab2b] to-[rgba(251,171,43,0.7)] border border-transparent transform hover:scale-110 hover:border-white transition-transform duration-3000 ease-in-out'>
+                                      <strong class='font-medium uppercase text-white'>orders</strong>
                                       <svg class="ml-1 rotate-180 fill-white group-hover:fill-[#fbab2b]" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                                           <path opacity="0.4"
                                               d="M17.6954 12.4962L21.6468 12.1467C22.5335 12.1467 23.2525 12.8727 23.2525 13.7681C23.2525 14.6635 22.5335 15.3895 21.6468 15.3895L17.6954 15.04C16.9997 15.04 16.4357 14.4705 16.4357 13.7681C16.4357 13.0645 16.9997 12.4962 17.6954 12.4962"
@@ -37,7 +37,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-8 w-full">
                       <div class="relative group flex justify-center items-center h-full w-full transform duration-300 hover:scale-105 hover:shadow-lg">
                         <img class="object-center object-cover h-full w-full" src='{{dept0_image_url }}' alt="perfume" />
-                        <button class="bg-[#fbab2b] text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none  py-3 w-36 ">{{dept0_name }}</button>
+                        <a href="{% url 'clothing' %}" class="bg-[#fbab2b] text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none  py-3 w-36 ">{{dept0_name }}</a>
                         <div class="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50"></div>
                       </div>
               
@@ -75,52 +75,39 @@
                   </div>
                 </div>
             </div>
-            <h3 class="text-gray-600 text-2xl font-medium">More Products</h3>
-            <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-               
-                <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden transform duration-300 hover:scale-105 hover:shadow-lg">
-                    <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=376&q=80')">
-                        <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        </button>
-                    </div>
-                    <div class="px-5 py-3">
-                        <h3 class="text-gray-700 uppercase">Chanel</h3>
-                        <span class="text-gray-500 mt-2">$12</span>
-                    </div>
-                </div>
-                <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden transform duration-300 hover:scale-105 hover:shadow-lg">
-                    <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1544441893-675973e31985?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80')">
-                        <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        </button>
-                    </div>
-                    <div class="px-5 py-3">
-                        <h3 class="text-gray-700 uppercase">Man Mix</h3>
-                        <span class="text-gray-500 mt-2">$12</span>
-                    </div>
-                </div>
-                <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden transform duration-300 hover:scale-105 hover:shadow-lg">
-                    <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1532667449560-72a95c8d381b?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80')">
-                        <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        </button>
-                    </div>
-                    <div class="px-5 py-3">
-                        <h3 class="text-gray-700 uppercase">Classic watch</h3>
-                        <span class="text-gray-500 mt-2">$12</span>
-                    </div>
-                </div>
-                <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden transform duration-300 hover:scale-105 hover:shadow-lg">
-                    <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1590664863685-a99ef05e9f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=345&q=80')">
-                        <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        </button>
-                    </div>
-                    <div class="px-5 py-3">
-                        <h3 class="text-gray-700 uppercase">woman mix</h3>
-                        <span class="text-gray-500 mt-2">$12</span>
-                    </div>
+            <div class="mt-16 min-h-full overflow-hidden">
+                <h3 class="text-[#282220] text-2xl font-medium">More Products</h3>
+                <div class="grid gap-6 min-h-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+                    {% for product in products  %}
+                        <div class=" p-[20px] w-full sm:max-w-sm  rounded-md shadow-md overflow-hidden transform duration-300 hover:scale-105 hover:shadow-lg">
+                            <div class="flex items-end justify-end h-56 w-full bg-cover bg-center" style="background-image: url('{{product.imageURL}}')">
+                                
+                              <button  class="p-2 rounded-full  text-white mx-5 -mb-4 bg-[#fbab2b] hover:bg-[rgba(251,171,43,0.6)] focus:outline-none focus:bg:[rgba(251,171,43,0.6)]">
+                                <div class="w-4  transform  hover:scale-110">
+                                  <a href="#">
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                      </svg>
+                                  </a>
+
+                              </div>
+                              </button>
+                            </div>
+                            <div class=" flex justify-between items-center pt-6">
+                                <h3 class="text-gray-700 uppercase">{{product.name}}</h3>
+                                <span class="text-gray-500 mt-2">{{product.price}}</span>
+                            </div>
+                            <button data-product="{{product.id}}" data-action="add" class=" update-cart inline-block text-white font-bold py-2 px-4 mt-[20px] rounded-md bg-gradient-to-r from-[#fbab2b] to-[rgba(251,171,43,0.7)] border border-transparent transform hover:scale-110 hover:border-white transition-transform duration-3000 ease-in-out">
+                              ADD TO CART
+                            </button>
+                        </div>
+                        
+                      
+                    {% endfor %}
+                   
+
+
                 </div>
             </div>
         </div>
