@@ -36,6 +36,8 @@ class Category(models.Model):
 	name = models.CharField(max_length=200)
 	description = models.TextField(blank=True, null=True)
 	parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
+	parenttwo = models.ForeignKey('self', null=True, blank=True, related_name='childrentwo', on_delete=models.CASCADE)
+	
 	department = models.ForeignKey(Department, null=True, blank=True, related_name='categories', on_delete=models.CASCADE)
 	image = models.ImageField(null=True, blank=True)
 

@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 import requests
 
-from store.models import Department, Order, OrderItem, Product, ShippingAddress
+from store.models import Category, Department, Order, OrderItem, Product, ShippingAddress
 from .forms import CustomUserCreationForm
 from .utils import cookieCart, cartData, guestOrder
 import http.client
@@ -104,17 +104,19 @@ def store(request):
 	}
 
 	return render(request, 'store.html', context)
-def ClothingDetail(request,product_id):
+def ClothingDetail(request,category_id):
 	data = cartData(request)
 
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
-	products = Product.objects.filter(category=product_id)
+	products = Product.objects.filter(category=category_id)
+	category = Category.objects.filter(parent=category_id,parenttwo=None)
 	p = Paginator(products,2)
 
 	# Get the requested page number from the URL parameter 'page'
 	page_num = request.GET.get('page')
+
 
 	try:
 		# Fetch the products for the requested page number
@@ -131,7 +133,8 @@ def ClothingDetail(request,product_id):
 		'products':page,
 		'items':items,
 		'order':order,
-		'cartItems':cartItems
+		'cartItems':cartItems,
+		'category':category
 
 
 

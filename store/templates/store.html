@@ -2,58 +2,42 @@
 {% block content %}
     <div>
         {% if products %}
-            <div class="mt-16 px-4 sm:px-6 xl:px-20 2xl:px-0 overflow-hidden">
-                <h3 class="text-[#282220] text-2xl font-medium">All Products</h3>
-                <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-                    {% for product in products  %}
-                        <div class=" p-[20px] w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden transform duration-300 hover:scale-105 hover:shadow-lg">
-                            <div class="flex items-end justify-end h-56 w-full bg-cover bg-center" style="background-image: url('{{product.imageURL}}')">
-                                <button data-product="{{product.id}}" data-action="add" class="update-cart p-2 rounded-full  text-white mx-5 -mb-4 bg-[#fbab2b] hover:bg-[rgba(251,171,43,0.6)] focus:outline-none focus:bg:[rgba(251,171,43,0.6)]">
-                                    <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                </button>
-                            </div>
-                            <div class="flex justify-between items-center pt-6">
-                                <h3 class="text-gray-700 uppercase">{{product.name}}</h3>
-                                <span class="text-gray-500 mt-2">{{product.price}}</span>
-                            </div>
+        <div class="mt-16 px-4 sm:px-6 xl:px-20 2xl:px-0 overflow-hidden">
+            <h3 class="text-[#282220] text-2xl font-medium">More Products</h3>
+            <div class="grid gap-6 min-h-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+                {% for product in products  %}
+                    <div class=" p-[20px] w-full sm:max-w-sm  rounded-md shadow-md overflow-hidden transform duration-300 hover:scale-105 hover:shadow-lg">
+                        <div class="flex items-end justify-end h-56 w-full bg-cover bg-center" style="background-image: url('{{product.imageURL}}')">
+                            
+                          <button  class="p-2 rounded-full  text-white mx-5 -mb-4 bg-[#fbab2b] hover:bg-[rgba(251,171,43,0.6)] focus:outline-none focus:bg:[rgba(251,171,43,0.6)]">
+                            <div class="w-4  transform  hover:scale-110">
+                              <a href="#">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                  </svg>
+                              </a>
+
+                          </div>
+                          </button>
                         </div>
-                      
-                    {% endfor %}
+                        <div class=" flex justify-between items-center pt-6">
+                            <h3 class="text-gray-700 uppercase">{{product.name}}</h3>
+                            <span class="text-gray-500 mt-2">{{product.price}}</span>
+                        </div>
+                        <button data-product="{{product.id}}" data-action="add" class=" update-cart inline-block text-white font-bold py-2 px-4 mt-[20px] rounded-md bg-gradient-to-r from-[#fbab2b] to-[rgba(251,171,43,0.7)] border border-transparent transform hover:scale-110 hover:border-white transition-transform duration-3000 ease-in-out">
+                          ADD TO CART
+                        </button>
+                    </div>
+                    
+                    
+                  
+                {% endfor %}
+               
 
 
-
-                </div>
-                <nav aria-label="Page navigation" class="mt-[60px] text-center">
-                    <ul class="inline-flex space-x-2">
-                        {% if products.has_previous %}
-                        <a href="?page={{ products.previous_page_number }}"><button class="flex items-center justify-center w-10 h-10 text-[#fbab2b] transition-colors duration-150 rounded-full focus:shadow-outline hover:bg-[rgba(251,171,43,0.1)]">
-                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path></svg></button>
-                        </a>
-                        {% endif %}
-                        <!-- Dynamic Page Numbers -->
-                        {% for num in products.paginator.page_range %}
-                            {% if num == products.number %}
-                                <li>
-                                    <button class="w-10 h-10 text-white transition-colors duration-150 bg-[#fbab2b] border border-r-0 border-[#fbab2b] rounded-full focus:shadow-outline">{{ num }}</button>
-                                </li>
-                            {% elif num > products.number|add:'-2' and num < products.number|add:'2' %}
-                                <li>
-                                    <a href="?page={{ num }}">
-                                        <button class="w-10 h-10 text-[#fbab2b] transition-colors duration-150 rounded-full focus:shadow-outline hover:bg-[rgba(251,171,43,0.1)]">{{ num }}</button>
-                                    </a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                        {% if products.has_next %}
-                            <a href="?page={{ products.next_page_number }}"><button class="flex items-center justify-center w-10 h-10 text-[#fbab2b] transition-colors duration-150 bg-white rounded-full focus:shadow-outline hover:bg-[rgba(251,171,43,0.1)]">
-                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path></svg></button>
-                            </a>
-                        {% endif %}
-                      
-
-                    </ul>
-                </nav>
             </div>
+        </div>
 
         {% else %}
         <p>no produt to display</p>
