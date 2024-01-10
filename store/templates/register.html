@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="flex min-h-full mb-[100px] py-[200px]  w-full items-center justify-center bg-gray-900 bg-cover bg-center bg-no-repeat" style="background-image:url('../static/images/happy-lady-stylish-skirt-boater-posing-pink-wall.jpg')">
+        <div class="rounded-xl relative  flex bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-sm z-10 max-sm:px-8">
+        <div class="text-white  w-full flex-col justify-center items-center">
+            <div class="bg-[#fbab2b] w-[100px] h-[100px] absolute  backdrop-blur-3xl blur-md z-0 opacity-40 right-0 top-0 rounded-md"></div>
+            <div class="mb-8 flex flex-col items-center">
+                <div class=" flex justify-center items-center">
+                    <img href="" class=" h-[45px] lg:text-2xl text-xl uppercase tracking-wider cursor-pointer font-bold" src='{% static "images/Logo.png" %}' alt="logo">
+                </div>
+            <span class="text-gray-300">Enter registration Details</span>
+            </div>
+            <form method="POST" action="{% url 'register' %}" class=" flex flex-col justify-center items-center" >
+                {% csrf_token %}
+                {% for field in form  %}
+                    <div class="mb-4 text-lg">
+                        {{field}}
+                        {% for error in field.errors %}
+                        <p style="color: red;">{{error}}</p>
+                        {% endfor %}
+
+                    </div>
+
+                {% endfor %}
+
+            <div class="mt-8 text-white flex justify-start gap-4 items-center text-lg ">
+                <button type="submit" class="rounded-3xl bg-yellow-400 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-yellow-600">Signup</button>
+                <div class="auth__alternative text-sm">
+                    <span>Have an Account?</span>
+                    <a class=" text-[#fbab2b] hover:text-[rgba(251,171,43,0.7)]" href="{% url 'login' %}">Log In</a>
+                </div>
+            </div>
+
+            </form>
+        </div>
+        </div>
+    </div>
+
+
+  
+{% endblock content %}
+
+    

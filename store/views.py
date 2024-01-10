@@ -306,7 +306,7 @@ def processOrder(request):
 
 
 def chapa_callback(request):
-	# transaction_id ='464b2c77-c713-4b78-803e-d613b34d4ed520231228195651110662'
+	
 	
 	transaction_id = request.GET.get('trx_ref')
 	print('this is request',request)
@@ -363,7 +363,7 @@ def loginUser(request):
         else:
             messages.error(request, 'Username OR password is incorrect')
 
-    return render(request, 'login_register.html',{'title_variable':title_variable})
+    return render(request, 'login.html',{'title_variable':title_variable})
 
 
 def logoutUser(request):
@@ -393,4 +393,4 @@ def registerUser(request):
                 request, 'An error has occurred during registration')
 
     context = {'title_variable':title_variable, 'form': form}
-    return render(request, 'login_register.html', context)
+    return render(request, 'register.html', context)

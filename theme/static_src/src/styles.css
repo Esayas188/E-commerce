@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.inputs{
+    @apply rounded-3xl border-none w-full max-w-md  px-6 py-2 text-center text-slate-600 placeholder-slate-500 shadow-lg outline-none 
+}
+.btns{
+    @apply uppercase inline-block text-white font-bold py-2 px-4  rounded-md bg-gradient-to-r from-[#fbab2b] to-[rgba(251,171,43,0.7)] border border-transparent transform hover:scale-110 hover:border-white transition-transform duration-1000 ease-in-out
+}
