@@ -1,8 +1,6 @@
 Read Me: E-commerce Website with Django
 Welcome! This repository houses the code for our final project, a powerful e-commerce website built with Django, HTML, CSS, JavaScript, and the stylish touch of Tailwind CSS.
 
-Built by: Esayas Fekade and Hafsa Eshetu
-
 Features:
 
 Product browsing: Navigate through your product catalog with ease.
